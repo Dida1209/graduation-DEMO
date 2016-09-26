@@ -2,3 +2,38 @@
 	margin: 0;
 	padding: 0;
 }
+.header{
+	max-width: 2000px;
+	background: #fbfbfb;
+	height: 200px;
+	
+}
+.banner,
+.login{
+	width: 50%;
+	height: 170px;
+	float: left;
+	line-height: 170px;
+	
+}
+.title,
+.logo{
+	display: inline-block;
+	vertical-align: center;
+}
+/*.logo{
+	padding-top: 50px;
+	padding-left: 300px;
+}
+.logo img{
+	vertical-align: center;
+}*/
+.title{
+	margin-left: 20px;
+	border-left: 3px solid #707070;
+	padding-left: 20px;
+	/*height: 30px;
+	font-size: 24px;
+	line-height: 30px;*/
+	height: 100%;
+}
