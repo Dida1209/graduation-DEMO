@@ -8,39 +8,70 @@
 	</head>
 
 	<body>
-		<section class="header">
-			<div class="banner">
-				<img class="logo" src="img/u9.png" />
-				
-				<p class="title">数据结构——就这么回事</p>
+		<header class="header">
+			<div class="headline clearfix">
+				<div class="banner">
+					<img class="logo" src="img/u9.png" />
+
+					<p class="title">数据结构——就这么回事</p>
+				</div>
+				<div class="login">
+					<p>欢迎&nbsp;
+						<spanclass="username">{username}</span>&nbsp;请登录！</p>
+					<input type="search" value="搜索" />
+				</div>
 			</div>
-			<div class="login">
-				<p>欢迎&nbsp;<spanclass="username">{username}</span>&nbsp;请登录！</p>
-				<input type="search" value="搜索" />
-			</div>	
-		</section>
-		<nav>
-				<a class="homepage"><i> </i>首页</a>
-				<a class="video">视频教学</a>
-				<a class="text">文案教学</a>
-				<a class="document">资料专区</a>
-				<a class="test">在线测试</a>
-				<a class="person">个人中心</a>
-		</nav>
-		<section class="first-section">
-			<div class=""></div>
-		</section>
-		<div class="">在线学习——更多自主学习的选择</div>
-		
-		<section class="second-section">
+			<nav>
+				<div id="nav">
+					<ul>
+						<li>
+							<a class="homepage"><i> </i>首页</a>
+						</li>
+						<li>
+							<a class="video">视频教学</a>
+						</li>
+						<li>
+							<a class="text">文案教学</a>
+						</li>
+						<li>
+							<a class="document">资料专区</a>
+						</li>
+						<li>
+							<a class="test">在线测试</a>
+						</li>
+						<li>
+							<a class="person">个人中心</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
 
-		</section>
-		<section class="third-second">
+		<div class="content">
+			<section class="first-section">
+				<p class="big-slogan">程序=数据结构+算法</p>
+				<p class="slogan">为数据结构而生，让学习变得有趣</p>
+				<form id="login-in">
+					<p>立刻<a class="check-in">注册</a>/<a class="logining">登录</a></p>
+					<p>加入我们一起学习吧</p><hr />
+					<input type="text" required value="请输入用户名" name="username"/>
+					<input type="text" required value="请输入密码" name="password" />
+					<input type="submit" value="登录" id="submit"/>
+					<a href="#" id="forget">忘记密码</a>
+				</form>
+			</section>
+			<div class="first-logo">在线学习——更多自主学习的选择</div>
 
-		</section>
-		<section class="footer">
+			<section class="second-section">
+				
+			</section>
+			<section class="third-second">
 
-		</section>
+			</section>
+		</div>
+		<footer class="footer">
+
+		</footer>
 
 	</body>
 
