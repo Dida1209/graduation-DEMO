@@ -1,7 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
-	font-size: 20px;
+	font-size: 28px;
 }
 /*头部样式*/
 ul{
@@ -9,7 +9,7 @@ ul{
 }
 .header{
 	max-width: 2000px;
-	background: #ececec;
+	background: #fdfdfd;
 	height: 200px;
 	overflow: hidden;
 }
@@ -36,9 +36,9 @@ ul{
 	padding-left: 200px;	
 }
 .title{
-	height: 30px;
-	font-size: 30px;
-	line-height: 30px;
+	height: 36px;
+	font-size: 36px;
+	line-height: 36px;
 	margin-left: 50px;
 	margin-top: 70px;
 	padding-left: 50px;
@@ -64,10 +64,10 @@ ul{
 	text-align: center;
 	text-decoration: none;
 }
-.header nav ul li:after{
+/*.header nav ul li:after{
 	content:'|';
 	color: #fff;
-}
+}*/
 
 /*第一部分样式*/
 #content{
@@ -85,7 +85,6 @@ ul{
 .big-slogan{
 	height: 80px;
 	line-height: 80px;
-	font-size: 26px;
 	font-weight: 500;
 	padding-left: 250px;
 	width: 500px;
@@ -95,7 +94,7 @@ ul{
 }
 .big-slogan{
 	padding-top: 200px;
-	font-size: 38px;
+	font-size: 48px;
 	font-weight: 900;
 }
 #login-in{
@@ -135,9 +134,57 @@ ul{
 	border-radius: 10px;
 }
 #login-in #submit{
-	width: 190px;
+	width: 180px;
 }
 #login-in #forget{
 	width: 100px;
 	display: inline-block;
+	color: #ff0000;
+	font-size: 20px;
 }
+.first-section{
+	background:url(../img/首页图层1.png) no-repeat top left;
+	background-size: 100%;
+}
+.second-section{
+	padding: 160px 300px;
+	height: 280px;
+	margin-top: 20px;
+	margin-bottom: 120px;
+	background: url(../img/首页图层2.png) no-repeat top left;
+	background-size: 100%;	
+}
+.second-section p{
+	color: #fff;
+}
+.second-section p:first-child{
+	font-size: 48px;
+	font-weight: 900;
+}
+.second-section p:nth-child(2){
+	padding: 25px 0 15px 50px;
+}
+.second-section p:nth-child(3){
+	padding-left: 100px;
+}
+.poster-video{
+	position: absolute;
+	top: -20px;
+	right: 100px;
+	z-index: 10;
+	width: 880px;
+	height: 640px;
+	background: url(../img/首页图层2一起.png) no-repeat top left;
+	background-size: 100%;	
+}
+
+
+
+
+
+
+
+
+
+
+
