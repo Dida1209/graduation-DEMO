@@ -1,0 +1,22 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "description": "graduation demo",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "git": "^0.1.5",
+    "grunt-contrib-watch": "^1.0.0",
+    "jade": "^1.11.0",
+    "moment": "^2.16.0",
+    "mongoose": "^4.7.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dida <18814127315@163.com>",
+  "license": "ISC"
+}
