@@ -36,6 +36,32 @@ app.get('/',function(req,res){  //直接调用express的get方法，因此浏览
 	//当匹配到‘/’后，返回index.jade页面，并把title设为demo首页
 })
 
+app.post('/user/signup',function(req,res){
+	var user=req.body.user;
+	user.find({name:user.name},function(err,user){
+		if(err){
+			console.log(err);
+		}else if(user){
+			console.log(user);
+			return res.redirect('/userlist',{})
+		}else{
+			var user=new User;
+			user.save(user,function(err,user){
+				if(err){
+					console.log(err);
+				}else{
+					user.fetch(function(err,users){
+						res.redirect('/userlist',{
+							title:'用户列表页'
+							users:users
+						})
+					}
+				}
+			})
+		}
+	})
+})
+
 app.get('/movie/:id',function(req,res){   //因为url中的id 所以可以利用req.params.id取出
 	var id=req.params.id;
 

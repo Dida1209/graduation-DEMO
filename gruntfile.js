@@ -27,7 +27,7 @@ module.exports=function(grunt){
 					watchedExtensions:['js'],
 					watchedFolders:['app','config'],
 					debug:true,
-					delayTime:1,  //当大批量的文件改动的时候，不需要每个文件改动的时候都来重启一次，而是等待一秒后再来重启一次
+					delayTime:1000,  //当大批量的文件改动的时候，不需要每个文件改动的时候都来重启一次，而是等待一秒后再来重启一次
 					env:{
 						PORT:3000
 					},
