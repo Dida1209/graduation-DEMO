@@ -7,6 +7,7 @@ var _=require('underscore');
 
 var mongoose=require('mongoose');  //调用mongoose连接数据库
 var Movie=require('./models/movie');//取出model下的movie模型
+var User= require('./models/user');
 
 mongoose.connect('mongodb://localhost/demo');  //连接到本地数据库
 
@@ -36,27 +37,70 @@ app.get('/',function(req,res){  //直接调用express的get方法，因此浏览
 	//当匹配到‘/’后，返回index.jade页面，并把title设为demo首页
 })
 
+//signup
 app.post('/user/signup',function(req,res){
-	var user=req.body.user;
-	user.find({name:user.name},function(err,user){
+	var _user=req.body.user;
+	User.find({name:_user.name},function(err,user){
+		if(err){
+			console.log('1'+err);
+		}
+		if(!user){
+			console.log('1001'+Boolean(user)+'1000000'+_user);
+			return res.redirect('/');
+		}
+		else{
+			var user=new User(_user);
+			user.save(function(err,user){
+				if(err){
+					console.log('2'+err);
+				}else{
+					res.redirect('/admin/userlist');
+				}
+			})
+		}
+	})
+})
+
+app.post('/user/signin',function(req,res){
+	var _user=req.body.user;
+	var password=_user.password;
+
+	User.find({name:_user.name},function(err,user){
 		if(err){
 			console.log(err);
-		}else if(user){
+		}
+		if(!user){
+			console.log('no this one');
+			return res.redirect('/');
+		}
+		else{
 			console.log(user);
-			return res.redirect('/userlist',{})
-		}else{
-			var user=new User;
-			user.save(user,function(err,user){
+			user.comparePassword(password,function(err,isMatch){
 				if(err){
 					console.log(err);
-				}else{
-					user.fetch(function(err,users){
-						res.redirect('/userlist',{
-							title:'用户列表页'
-							users:users
-						})
-					}
 				}
+				if(isMatch){
+					console.log('match');
+					return res.redirect('/');
+				}
+				else{
+					console.log('no match');
+				}
+			})
+		}
+	})
+})
+
+//userlist
+app.get('/admin/userlist',function(req,res){
+	User.fetch(function(err,users){
+		if(err){
+			console.log('3'+err);
+		}else{
+			console.log('2002'+users);
+			res.render('userlist',{
+				title:'用户列表页',
+				users:users
 			})
 		}
 	})
