@@ -4,17 +4,31 @@ var app = express();           //启动一个web服务器  将这个实例赋给
 var path = require('path');              //path可以为静态资源定义地址
 var bodyParser=require('body-parser');
 var _=require('underscore');
+var cookieParser=require('cookie-parser');
+var session=require('express-session');
+//var connect=require('connect');
 
 var mongoose=require('mongoose');  //调用mongoose连接数据库
+var mongoStore=require('connect-mongo')(session);
 var Movie=require('./models/movie');//取出model下的movie模型
 var User= require('./models/user');
+var dbUrl='mongodb://localhost/demo';
 
-mongoose.connect('mongodb://localhost/demo');  //连接到本地数据库
+mongoose.connect(dbUrl);  //连接到本地数据库
 
 app.set('views','./views/pages');     //设置视图根目录
 app.set('view engine','jade');        //设置默认的模板引擎
 app.use(express.static(path.join(__dirname,'public')));    //静态资源所在的目录  path.join可以添加多个参数，把这些目录拼接起来
 app.use(bodyParser.urlencoded({ extended: true }));  //express的bodyParser的方法能把提交表单的数据格式化
+app.use(cookieParser());
+app.use(session({
+	secret:'demo',
+	store:new mongoStore({
+		url:dbUrl,      //给这个store，demoDB的地址
+		collection:'sessions'   //存储的这些session的集合就叫做session，
+	})
+}))
+
 
 app.locals.moment=require('moment');
 app.listen(port);                         //监听端口
@@ -25,6 +39,9 @@ console.log('demo is started '+port);        //在服务台打印一行日志
 app.get('/',function(req,res){  //直接调用express的get方法，因此浏览器访问这个页面都是用get方法提交这个请求的
 	                            //get里有两个参数，一个是路由的编写规则，一个是回调方法
 	                            //回调方法里会在诸如两个方法，一个是request，一个是respond
+	console.log('user in session:');
+	console.log(req.session.user);
+
 	Movie.fetch(function(err,movies){
 		if(err){
 			console.log(err)
@@ -63,9 +80,10 @@ app.post('/user/signup',function(req,res){
 
 app.post('/user/signin',function(req,res){
 	var _user=req.body.user;
+	var name=_user.name;
 	var password=_user.password;
 
-	User.find({name:_user.name},function(err,user){
+	User.findOne({name:name},function(err,user){
 		if(err){
 			console.log(err);
 		}
@@ -80,6 +98,7 @@ app.post('/user/signin',function(req,res){
 					console.log(err);
 				}
 				if(isMatch){
+					req.session.user=user;
 					console.log('match');
 					return res.redirect('/');
 				}
