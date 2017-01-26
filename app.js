@@ -13,6 +13,7 @@ var mongoStore=require('connect-mongo')(session);
 var Movie=require('./models/movie');//取出model下的movie模型
 var User= require('./models/user');
 var dbUrl='mongodb://localhost/demo';
+mongoose.Promise=global.Promise;
 
 mongoose.connect(dbUrl);  //连接到本地数据库
 
@@ -41,7 +42,10 @@ app.get('/',function(req,res){  //直接调用express的get方法，因此浏览
 	                            //回调方法里会在诸如两个方法，一个是request，一个是respond
 	console.log('user in session:');
 	console.log(req.session.user);
-
+	var _user=req.session.user;
+	if(_user){
+		app.locals.user=_user;
+	}
 	Movie.fetch(function(err,movies){
 		if(err){
 			console.log(err)
@@ -77,7 +81,7 @@ app.post('/user/signup',function(req,res){
 		}
 	})
 })
-
+//signin
 app.post('/user/signin',function(req,res){
 	var _user=req.body.user;
 	var name=_user.name;
@@ -109,7 +113,12 @@ app.post('/user/signin',function(req,res){
 		}
 	})
 })
-
+//logout
+app.get('/logout',function(req,res){
+	delete req.session.user;
+	delete app.locals.user;
+	res.redirect('/');
+})
 //userlist
 app.get('/admin/userlist',function(req,res){
 	User.fetch(function(err,users){
