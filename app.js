@@ -16,7 +16,7 @@ var dbUrl='mongodb://localhost/demo';
 
 mongoose.connect(dbUrl);  //连接到本地数据库
 
-app.set('views','./views/pages');     //设置视图根目录
+app.set('views','./app/views/pages');     //设置视图根目录
 app.set('view engine','jade');        //设置默认的模板引擎
 app.use(express.static(path.join(__dirname,'public')));    //静态资源所在的目录  path.join可以添加多个参数，把这些目录拼接起来
 app.use(bodyParser.urlencoded({ extended: true }));  //express的bodyParser的方法能把提交表单的数据格式化
