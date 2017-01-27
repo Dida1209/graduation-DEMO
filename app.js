@@ -5,6 +5,7 @@ var path = require('path');              //path可以为静态资源定义地址
 var bodyParser=require('body-parser');
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
+var logger=require('morgan');
 //var connect=require('connect');
 
 var mongoose=require('mongoose');  //调用mongoose连接数据库
@@ -27,6 +28,13 @@ app.use(session({
 		collection:'sessions'   //存储的这些session的集合就叫做session，
 	})
 }))
+
+if(app.get('env')==='development'){
+	app.set('showStackError',true);
+	app.use(logger(':method :url :status'));
+	app.locals.pretty=true;
+	mongoose.set('debug',true);
+}
 
 require('./config/routes')(app);
 
