@@ -31,7 +31,7 @@ app.use(session({
 
 if(app.get('env')==='development'){
 	app.set('showStackError',true);
-	app.use(logger(':method :url :status'));
+	app.use(logger('dev'));
 	app.locals.pretty=true;
 	mongoose.set('debug',true);
 }

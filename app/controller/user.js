@@ -62,6 +62,8 @@ exports.logout=function(req,res){
 }
 
 exports.list=function(req,res){
+	var url=req.params.url;
+	console.log('req.params     '+url);
 	User.fetch(function(err,users){
 		if(err){
 			console.log('3'+err);
@@ -73,4 +75,26 @@ exports.list=function(req,res){
 			})
 		}
 	})
+}
+
+exports.showUserSignin=function(req,res,next){
+	var user=req.session.user;
+	if(!user){
+		console.log('没登录');
+		res.redirect(307,'http://localhost:3000/user/signin');
+	}
+	next();
+}
+
+exports.showUserRole=function(req,res,next){
+	var user=req.session.user;
+	if(user.role>=10){
+		console.log('已登录，有权限');
+		//res.redirect('/admin/user/list');
+		next();
+	}
+	else{
+		console.log('已登录，没权限');
+		res.redirect('/');
+	}
 }
