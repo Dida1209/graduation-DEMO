@@ -81,7 +81,7 @@ exports.showUserSignin=function(req,res,next){
 	var user=req.session.user;
 	if(!user){
 		console.log('没登录');
-		res.redirect(307,'http://localhost:3000/user/signin');
+		res.redirect('/');
 	}
 	next();
 }

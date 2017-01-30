@@ -1,6 +1,7 @@
 var index=require('../app/controller/index');
 var user=require('../app/controller/user');
 var movie=require('../app/controller/movie');
+var comment=require('../app/controller/comment');
 
 module.exports=function(app){
 
@@ -48,4 +49,7 @@ app.get('/admin/list',user.showUserSignin,user.showUserRole,movie.list);
 //list delete movie
 app.delete('/admin/list',user.showUserSignin,user.showUserRole,movie.del);
 
+
+//comment
+app.post('/user/comment',user.showUserSignin,comment.save);
 }
