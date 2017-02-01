@@ -4,11 +4,11 @@ var ObjectId=Schema.Types.ObjectId;
 
 var CommentSchema = new Schema({
 	movie:{type:ObjectId,ref:'Movie'},  //指向数据库Movie这个模型
-	from:{type:ObjectId,ref:'User'},
+	from:{type:ObjectId,ref:'User'},    //这里的from跟reply的to是同一个人的
 	reply:[{
-		from:{type:ObjectId,ref:'User'},
-		to:{type:ObjectId,ref:'User'},
-		content:String
+		from:{type:ObjectId,ref:'User'},  //谁评论的
+		to:{type:ObjectId,ref:'User'},    //评论谁的
+		content:String                    //内容
 	}],	
 	content:String,
 	meta:{

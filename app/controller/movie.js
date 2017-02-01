@@ -8,6 +8,7 @@ exports.detail=function(req,res){   //因为url中的id 所以可以利用req.pa
 	Movie.findById(id,function(err,movie){
 		Comment.find({movie:id})
 				.populate('from','name')
+				.populate('reply.from reply.to','name')
 				.exec(function(err,comments){
 					console.log('comments:');
 					console.log(comments);
